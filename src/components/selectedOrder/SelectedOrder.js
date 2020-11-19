@@ -64,11 +64,15 @@ class SelectedOrders extends React.Component {
               )
           })}
             <h4>{"Total ammount: " + totalOrderPrice + " KD"}</h4>
-
+            {selectedOrder.orderStatus !== "rejected" && selectedOrder.orderStatus !== "accepted"? 
             <div className= "row" style={{display:"flex"}}>
             <Button className={classes.acceptOrderButton} variant="contained" onClick = {this.acceptOrder}>Accept</Button>
             <Button className={classes.rejectOrderButton} variant="contained" onClick = {this.rejectOrder}>Reject</Button>
-            </div>
+            </div> : <div><Button variant="contained" disabled 
+            style = {{width: "100%", opacity:0.5}}
+            className= {selectedOrder.orderStatus === "rejected" ? classes.rejectOrderButton : classes.acceptOrderButton}>{selectedOrder.orderStatus}</Button></div>
+             }
+            
             
           </div>
         </div>

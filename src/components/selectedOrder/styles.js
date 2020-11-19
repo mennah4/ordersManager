@@ -23,7 +23,7 @@ const styles = theme => ({
     },
     acceptOrderButton: {
       width:"48%",
-      backgroundColor: "rgb(76,167,70)",
+      backgroundColor: "rgb(76,167,70) !important",
       height:"50px",
       fontWeight:"bold",
       '&:focus': {
@@ -33,13 +33,13 @@ const styles = theme => ({
         backgroundColor: "rgb(76,167,70)",
       },
       marginTop:"10px",
-      color:"white",
+      color:"white !important",
       marginRight:"25px"
     },
     rejectOrderButton:{
       width:"48%",
-      color:"white",
-      backgroundColor: "rgb(220,53,69)",
+      color:"white !important",
+      backgroundColor: "rgb(220,53,69) !important",
       height:"50px",
       fontWeight:"bold",
       '&:focus': {

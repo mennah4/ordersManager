@@ -98,7 +98,7 @@ class Orders extends React.Component {
       return (
         <div>
           <div className={classes.ordersContainer}>
-            <div style={{position:"sticky"}}>
+            <div style={{position:"sticky", top: "10px"}}>
               <Button className={classes.newOrderBtn} onClick={this.toggleCreateNewOrderModar}>New Order <AddIcon style ={{marginLeft:"10px"}} /></Button>
             </div>
             <Divider style={{marginTop:"30px"}}></Divider>
