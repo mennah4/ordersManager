@@ -14,10 +14,10 @@ class SelectedOrders extends React.Component {
   } 
   render(){
     const { orders, classes, selectedOrderIndex, selectedOrder } = this.props;
-
+    const createdAt = new Date(selectedOrder.timestamp.seconds*1000)
       return(<div className={classes.selectedOrderContainer}>
 
-          <p>Order # {selectedOrder.id} | Placed At:</p>
+          <p>Order # {selectedOrder.id} | Placed At:{ selectedOrder.timestamp.toDate().toDateString()}</p>
           <p>Customer Name: {selectedOrder.name} </p>
           <p>Customer Email: {selectedOrder.email} </p>
           <b>Items</b>
