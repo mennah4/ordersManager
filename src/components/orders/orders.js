@@ -30,22 +30,22 @@ class Orders extends React.Component {
     // this.createNewOrder = this.createNewOrder.bind(this)
   }
 
-  selectOrder = (note, id) => this.props.selectOrder(note, id);
+  selectOrder = (order, id) => this.props.selectOrder(order, id);//props function to select the order from the list 
 
-  toggleCreateNewOrderModar = () => {
+  toggleCreateNewOrderModar = () => {//open order creation modal
     this.setState({
       ordersModal: true
     });
     console.log(this.state.ordersModal)
   };
 
-  handleClose = () => {
+  handleClose = () => {//close the order creation modal when clicking outside
     this.setState({
       ordersModal: false
     });
   };
 
-  handleChange = async (e) => {
+  handleChange = async (e) => {//handle change for the primitive attributes
     let newOrder = this.state.newOrder;
     const { name, value } = e.target;
     if (name === "name" || name === "email") { newOrder[name] = value; }
@@ -54,7 +54,7 @@ class Orders extends React.Component {
     await this.setState({ newOrder });
   }
 
-  handleItemsChange = idx => e => {
+  handleItemsChange = idx => e => {//handle change for the items array considering the item[idx]
     const { name, value } = e.target;
     const items = [...this.state.items];
     let newOrder = this.state.newOrder;
@@ -64,7 +64,7 @@ class Orders extends React.Component {
     this.setState({items, newOrder})
   }
 
-  addNewItemToOrder = () => {
+  addNewItemToOrder = () => {//ad new order row(dafault empty)
     const item = {
       itemName: "",
       itemQty: 0,
@@ -75,7 +75,7 @@ class Orders extends React.Component {
     })
   }
 
-  deleteItemFromOrder = (idx) => () =>{
+  deleteItemFromOrder = (idx) => () =>{//delete item from the array
     const items = [...this.state.items]
     items.splice(idx, 1)
     let newOrder = this.state.newOrder;
@@ -86,7 +86,7 @@ class Orders extends React.Component {
     });
   }
 
-  createNewOrder = () => {
+  createNewOrder = () => {//submit the order 
     console.log("new order")
     this.props.createNewOrder(this.state.newOrder);
     this.setState({ ordersModal: false });
@@ -98,10 +98,11 @@ class Orders extends React.Component {
       return (
         <div>
           <div className={classes.ordersContainer}>
-          <Button onClick={this.toggleCreateNewOrderModar}
-              className={classes.newOrderBtn} >New Order <AddIcon style ={{marginLeft:"10px"}} />
-            </Button>
+            <div style={{position:"sticky"}}>
+              <Button className={classes.newOrderBtn} onClick={this.toggleCreateNewOrderModar}>New Order <AddIcon style ={{marginLeft:"10px"}} /></Button>
+            </div>
             <Divider style={{marginTop:"30px"}}></Divider>
+            {/* Orders List contining order items component */}
             <List>
               {
                 orders.map((order, _index) => {
@@ -119,35 +120,27 @@ class Orders extends React.Component {
                 })
               }
             </List>
-          
           </div>
           <div>
-            <Modal
+            {/* Order Placement Modal - needs to be refctored, into speperate Oreder creation Component */}
+            <Modal 
               open={this.state.ordersModal}
               onClose={this.handleClose}
               aria-labelledby="simple-modal-title"
               aria-describedby="simple-modal-description"
             >
-
               <div className={classes.formContainer}>
                 <h4 className={classes.title}>PLACE NEW ORDER</h4>
                 <form noValidate autoComplete="off">
+                  {/* Inputs for the name/email*/}
                   <div className="row"><TextField className={classes.newOrderInput} id="standard-size-small" label="Name" variant="outlined"
                     onChange={this.handleChange} name="name" /></div>
                   <div className="row"><TextField className={classes.newOrderInput} id="standard-size-small" label="Email" variant="outlined"
                     onChange={this.handleChange} name="email" /></div>
-
-                  {this.state.newOrder.items !== undefined ? 
-                    // <b>Items</b>
-                    this.state.items.map(item =>{
-                      <div>
-                          {item.itemName} {item.itemPrice + " x " + item.itemQty} {parseInt(item.itemPrice)*item.itemQty + " KD"}
-                      </div>
-                    })
-                    :null}
+                      {/* Adding items dynamically to the array*/}
                       <Button className={classes.newItemButton} variant="contained" color="primary" disableElevation
                         onClick={this.addNewItemToOrder}>
-                          Add new item to the basket
+                          Add new item to the basket 
                           <AddIcon style ={{marginLeft:"10px"}} />
                       </Button>
                       {this.state.items.map((item, idx) => {
@@ -171,15 +164,10 @@ class Orders extends React.Component {
                         onClick={this.createNewOrder}>
                         Place order
                       </Button>
-                      
                 </form>
-                
-
               </div>
-
             </Modal>
           </div>
-
         </div>
       )
     } else {

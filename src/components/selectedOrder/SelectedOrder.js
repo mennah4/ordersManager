@@ -1,10 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import OrderItem from "../orederItem/orderItem"
-import List from '@material-ui/core/List';
-import { Divider, Button } from '@material-ui/core';
 
+import { Button } from '@material-ui/core';
 class SelectedOrders extends React.Component {
   constructor() {
     super();
@@ -12,30 +10,27 @@ class SelectedOrders extends React.Component {
       selectedOrder:{}
     };
   } 
-  acceptOrder = async () =>{
+  acceptOrder = async () =>{//order status change to accepted
     let selectedOrder = this.state.selectedOrder
     selectedOrder.orderStatus = "accepted"
-    await this.setState({selectedOrder}, ()=>{
+    await this.setState({selectedOrder}, ()=>{//setState Callback to send props to App.js to update the db
       this.props.updateOrderStatus(this.state.selectedOrder.id, {
         orderStatus: "accepted",
       })
     })
-    console.log("in accepted", this.state.selectedOrder)
   }
 
-  rejectOrder = async() =>{
+  rejectOrder = async() =>{//order status change to rejected
     let selectedOrder = this.state.selectedOrder
     selectedOrder.orderStatus = "rejected"
-    await this.setState({selectedOrder}, () =>{
+    await this.setState({selectedOrder}, () =>{//setState Callback to send props to App.js to update the db
       this.props.updateOrderStatus(this.state.selectedOrder.id, {
         orderStatus: "rejected",
       })
-    })
-    console.log("in rejected", this.state.selectedOrder)
-    
+    })    
   }
 
-  static getDerivedStateFromProps(nextProps, prevState){
+  static getDerivedStateFromProps(nextProps, prevState){//get the props(selectedOrder) and set ing the state
     return {
       selectedOrder: nextProps.selectedOrder
   };
@@ -43,9 +38,11 @@ class SelectedOrders extends React.Component {
 }
   render(){
     const { orders, classes, selectedOrderIndex, selectedOrder } = this.props;
+    //total price for all the items using reduce and calculating the sum and making sure of getting a numerical value. 
+    //price is originall string, parse the float value and round it to the closed 2 numbers
     const totalOrderPrice = selectedOrder.items.reduce((total, item) => Number(total) + Number((parseFloat(item.itemPrice)*item.itemQty).toFixed(2)), 0);
     let createdAt = "";
-    if(selectedOrder.timestamp){
+    if(selectedOrder.timestamp){//convert the time stampt of firebase to Date
       createdAt = selectedOrder.timestamp.toDate().toDateString()
     }else{createdAt = "dd/mm/yyyy"}
     

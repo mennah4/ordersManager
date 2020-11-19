@@ -12,6 +12,7 @@ const styles = theme => ({
     top:10,
     left:10,
     right:10,
+    marginTop: "25px",
     width: "260px",
     height: '50px',
     borderBottom: '1px solid black',
@@ -31,7 +32,8 @@ const styles = theme => ({
     boxSizing: 'border-box',
     float: 'left',
     overflowY: 'scroll',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    marginTop: "-20px"
   },
   modalContainer: {
     marginTop: '0px',

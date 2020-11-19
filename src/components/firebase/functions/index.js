@@ -17,7 +17,7 @@ var transporter = nodemailer.createTransport({
 });
 
 
-exports.sendEmail = functions.firestore
+exports.sendEmail = functions.firestore //function to send an email when the order is created 
     .document('orders/{orderId}')
     .onCreate((snap, context) => {
 
@@ -43,7 +43,7 @@ exports.sendEmail = functions.firestore
     });
 
 
-    exports.sendOrderConfirmationEmail = functions.firestore
+    exports.sendOrderConfirmationEmail = functions.firestore //function to send an email when the order status has changed depending on the status
     .document('orders/{orderId}')
     .onUpdate((change, context) => {
         console.log("We have a notification to send to");
