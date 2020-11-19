@@ -1,3 +1,9 @@
+#PrejectURL
+
+https://react-firebase-task-mashkor.web.app/
+
+
+
 #Description
 
 
@@ -9,10 +15,20 @@ This is an orders system app in which the users can creat a new order and add as
 
 
 1- Create New Order with multiple items.
+
+
 2- Add/Delete items from an order. 
+
+
 3- Accept/Reject order.
+
+
 4- View all orders.
+
+
 5- Recieve an email when a new order is created.
+
+
 6- Recieve an email when the order status has changed.
 
 
