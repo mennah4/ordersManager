@@ -35,7 +35,6 @@ class App extends React.Component{
   createNewOrder = async(newOrder) =>{
     const order = newOrder;
     console.log(order)
-    const items = order.items.map((obj)=> {return Object.assign({}, obj)});
     const newFromDB = await Firebase
       .firestore()
       .collection('orders')

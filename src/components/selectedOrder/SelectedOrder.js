@@ -22,7 +22,13 @@ class SelectedOrders extends React.Component {
           <p>Customer Email: {selectedOrder.email} </p>
           <b>Items</b>
           {selectedOrder.items.map(item =>{
-              return(<p>Item Name: {item.itemName}</p>)
+              return(
+                <div className= "row">
+                  <p className= "col-5">{item.itemName}</p>
+                  <p className= "col-3">{item.itemPrice + " x " + item.itemQty} </p>
+                  <p className= "col-3">{parseInt(item.itemPrice)*item.itemQty + " KD"}</p>
+                </div>
+              )
           })}
           <b>Total Ammount: KD</b>
             <Button variant="contained" color="success">Accept</Button>

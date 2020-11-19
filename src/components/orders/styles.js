@@ -62,21 +62,48 @@ const styles = theme => ({
       backgroundColor: "green",
     }
   },
+  newItemButton:{
+    width:"fit-content",
+    backgroundColor: "blue",
+    marginTop:"20px",
+    marginBottom:"20px",
+    '&:focus': {
+      backgroundColor: "blue",
+    },
+    '&:hover': {
+      backgroundColor: "blue",
+    }
+  },
+  deleteItemButton:{
+    width:"fit-content",
+    backgroundColor: "red",
+    marginTop:"20px",
+    '&:focus': {
+      backgroundColor: "red",
+    },
+    '&:hover': {
+      backgroundColor: "red",
+    },
+    marginLeft:"10px",
+    marginTop:"10px",
+    paddingRight:"1px",
+    paddingLeft:"1px"
+  },
   newOrderInput: {
     width: '100%',
     marginBottom: '20px',
   },
   itemNameInput:{
-    width:"50%",
+    width:"45%",
     marginRight:"2px"
   },
   itemQtyInput:{
-    width:"22%",
-    marginRight:"15px",
-    marginLeft:"15px"
+    width:"20%",
+    marginRight:"10px",
+    marginLeft:"10px"
   },
   itemPriceInput:{
-    width:"22%",
+    width:"20%",
   },
   newNoteSubmitBtn: {
     width: '100%',
