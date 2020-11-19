@@ -73,8 +73,10 @@ class App extends React.Component{
         <SelectedOrder 
         selectedOrderIndex = {selectedOrderIndex}
         selectedOrder = {selectedOrder}
-        updateOrderStatus={this.updateOrderStatus}/> : null}
-        
+        updateOrderStatus={this.updateOrderStatus}/> : 
+        <div>
+        Please click an order from the list to view
+      </div>}
       </div>
     )
   }

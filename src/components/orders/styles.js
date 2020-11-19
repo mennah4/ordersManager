@@ -1,36 +1,33 @@
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
-    height: 'calc(100% - 35px)',
+    height: 'calc(100vh)',
     position: 'absolute',
     left: '0',
     width: '300px',
-    boxShadow: '0px 0px 2px black'
+    boxShadow: '0px 0px 2px black',
   },
-  newChatBtn: {
-    borderRadius: '0px'
-  },
-  unreadMessage: {
-    color: 'red',
-    position: 'absolute',
-    top: '0',
-    right: '5px'
-  },
-  newNoteBtn: {
-    width: '100%',
-    height: '35px',
+  newOrderBtn: {
+    position:"sticky",
+    top:10,
+    left:10,
+    right:10,
+    width: "260px",
+    height: '50px',
     borderBottom: '1px solid black',
-    borderRadius: '0px',
+    borderRadius: '16px',
     backgroundColor: '#29487d',
     color: 'white',
+    fontSize:"16px",
     '&:hover': {
-      backgroundColor: '#88a2ce'
+      backgroundColor: '#29487d',
+      opacity:0.75
     }
   },
   ordersContainer: {
     marginTop: '0px',
     width: '300px',
-    height: '100%',
+    height: '100vh',
     boxSizing: 'border-box',
     float: 'left',
     overflowY: 'scroll',
@@ -42,42 +39,60 @@ const styles = theme => ({
     height: '100%',
     boxSizing: 'border-box',
     float: 'center',
+    border: "none",
+    '&:focus': {
+      border: "none",
+    },
+    '&:hover': {
+      border: "none",
+    }
+    
   },
   formContainer: {
-    margin: "0 auto",
+    margin: "auto",
+    marginTop:"100px",
+    padding:"20px 50px",
     backgroundColor:"white",
     width:"fit-content",
-    padding:"50px",
-    marginTop: "200px"
-
+    maxHeight:"420px",
+    overflow:"scroll",
+    border: "none",
+    '&:focus': {
+      border: "none",
+    },
+    '&:hover': {
+      border: "none",
+    }
   },
   orderPlacementButton:{
     width:"100%",
-    backgroundColor: "green",
-    marginTop:"20px",
+    backgroundColor: "rgba(76,167,70,0.75)",
+    height:"50px",
+    fontWeight:"bold",
     '&:focus': {
-      backgroundColor: "green",
+      backgroundColor: "rgba(76,167,70,0.5)",
     },
     '&:hover': {
-      backgroundColor: "green",
-    }
+      backgroundColor: "rgba(76,167,70,0.5)",
+    },
+    marginTop:"10px"
   },
   newItemButton:{
-    width:"fit-content",
-    backgroundColor: "blue",
-    marginTop:"20px",
-    marginBottom:"20px",
+    width:"100%",
+    backgroundColor: "lightgrey",
+    color:"black",
+    height:"50px",
     '&:focus': {
-      backgroundColor: "blue",
+      backgroundColor: "lightgrey",
     },
     '&:hover': {
-      backgroundColor: "blue",
-    }
+      backgroundColor: "lightgrey",
+    },
+    marginBottom:"1.3rem"
   },
   deleteItemButton:{
     width:"fit-content",
     backgroundColor: "red",
-    marginTop:"20px",
     '&:focus': {
       backgroundColor: "red",
     },
@@ -85,9 +100,9 @@ const styles = theme => ({
       backgroundColor: "red",
     },
     marginLeft:"10px",
-    marginTop:"10px",
     paddingRight:"1px",
-    paddingLeft:"1px"
+    paddingLeft:"1px",
+    height:"55px"
   },
   newOrderInput: {
     width: '100%',
@@ -105,12 +120,10 @@ const styles = theme => ({
   itemPriceInput:{
     width:"20%",
   },
-  newNoteSubmitBtn: {
-    width: '100%',
-    backgroundColor: '#28787c',
-    borderRadius: '0px',
-    color: 'white'
+  title:{
+    marginTop:0
   }
+
 });
 
 export default styles;

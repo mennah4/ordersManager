@@ -4,11 +4,10 @@ import styles from './styles';
 import OrderItem from "../orederItem/orderItem"
 import List from '@material-ui/core/List';
 import { Divider, Button } from '@material-ui/core';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import CreateOrder from "../form/createOrder"
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 class Orders extends React.Component {
   constructor() {
     super();
@@ -99,6 +98,10 @@ class Orders extends React.Component {
       return (
         <div>
           <div className={classes.ordersContainer}>
+          <Button onClick={this.toggleCreateNewOrderModar}
+              className={classes.newOrderBtn} >New Order <AddIcon style ={{marginLeft:"10px"}} />
+            </Button>
+            <Divider style={{marginTop:"30px"}}></Divider>
             <List>
               {
                 orders.map((order, _index) => {
@@ -116,10 +119,7 @@ class Orders extends React.Component {
                 })
               }
             </List>
-            <Button onClick={this.toggleCreateNewOrderModar}
-              className={classes.newNoteBtn} >New Order <AddCircleIcon />
-            </Button>
-
+          
           </div>
           <div>
             <Modal
@@ -130,7 +130,7 @@ class Orders extends React.Component {
             >
 
               <div className={classes.formContainer}>
-                <b>Place a new order</b>
+                <h4 className={classes.title}>PLACE NEW ORDER</h4>
                 <form noValidate autoComplete="off">
                   <div className="row"><TextField className={classes.newOrderInput} id="standard-size-small" label="Name" variant="outlined"
                     onChange={this.handleChange} name="name" /></div>
@@ -148,7 +148,7 @@ class Orders extends React.Component {
                       <Button className={classes.newItemButton} variant="contained" color="primary" disableElevation
                         onClick={this.addNewItemToOrder}>
                           Add new item to the basket
-                        <AddCircleIcon />
+                          <AddIcon style ={{marginLeft:"10px"}} />
                       </Button>
                       {this.state.items.map((item, idx) => {
                         return (

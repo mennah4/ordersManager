@@ -35,17 +35,6 @@ class SelectedOrders extends React.Component {
     
   }
 
-  // componentDidUpdate(){
-  //   if(this.state.selectedOrder.orderStatus !== ""){
-  //     setTimeout(() => {
-  //       this.props.updateOrderStatus(this.state.selectedOrder.id, {
-  //         orderStatus: this.state.selectedOrder.orderStatus,
-  //       })
-  //   }, 10000);
-      
-  //   }
-  // }
-
   static getDerivedStateFromProps(nextProps, prevState){
     return {
       selectedOrder: nextProps.selectedOrder
@@ -54,25 +43,39 @@ class SelectedOrders extends React.Component {
 }
   render(){
     const { orders, classes, selectedOrderIndex, selectedOrder } = this.props;
-      return(<div className={classes.selectedOrderContainer}>
-          {/* { selectedOrder.timestamp.toDate().toDateString()} */}
-          <p>Order # {selectedOrder.id} | Placed At:</p>
+    const totalOrderPrice = selectedOrder.items.reduce((total, item) => Number(total) + Number((parseFloat(item.itemPrice)*item.itemQty).toFixed(2)), 0);
+    let createdAt = "";
+    if(selectedOrder.timestamp){
+      createdAt = selectedOrder.timestamp.toDate().toDateString()
+    }else{createdAt = "dd/mm/yyyy"}
+    
+      return(
+        <div className={classes.selectedOrderContainer}>
+          <div className={classes.selectedOrderInnerContainer}>
+          <b>Order # {selectedOrder.id}</b>
+          <p>Placed At: {createdAt}</p>
           <p>Customer Name: {selectedOrder.name} </p>
           <p>Customer Email: {selectedOrder.email} </p>
           <b>Items</b>
           {selectedOrder.items.map(item =>{
               return(
-                <div className= "row">
-                  <p className= "col-5">{item.itemName}</p>
-                  <p className= "col-3">{item.itemPrice + " x " + item.itemQty} </p>
-                  <p className= "col-3">{parseFloat(item.itemPrice)*item.itemQty + " KD"}</p>
+                <div className= "row" style={{display:"flex"}}>
+                  <p className= "col-5" style={{width:"40%"}}>{item.itemName}</p>
+                  <p className= "col-3" style={{width:"30%"}}>{item.itemPrice + " x " + item.itemQty} </p>
+                  <p className= "col-3" style={{width:"30%"}}>{(parseFloat(item.itemPrice)*item.itemQty).toFixed(2) + " KD"}</p>
                 </div>
               )
           })}
-          <b>Total Ammount: KD</b>
-            <Button variant="contained" color="success" onClick = {this.acceptOrder}>Accept</Button>
-            <Button variant="contained" color="secondary" onClick = {this.rejectOrder}>Reject</Button>
-      </div>)
+            <h4>{"Total ammount: " + totalOrderPrice + " KD"}</h4>
+
+            <div className= "row" style={{display:"flex"}}>
+            <Button className={classes.acceptOrderButton} variant="contained" onClick = {this.acceptOrder}>Accept</Button>
+            <Button className={classes.rejectOrderButton} variant="contained" onClick = {this.rejectOrder}>Reject</Button>
+            </div>
+            
+          </div>
+        </div>
+      )
 
       
   }

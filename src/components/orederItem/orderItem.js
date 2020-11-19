@@ -13,16 +13,16 @@ class OrderItem extends React.Component {
         const { _index, order, classes, selectedOrderIndex } = this.props;
         return (
             <div key={_index}>
-                <ListItem
+                <ListItem 
                 className={classes.listItem}
                 selected={selectedOrderIndex === _index}
                 alignItems="flex-start">
                     <div 
                     className={classes.textSection}
                     onClick={() => this.selectOrder(order, _index)}>
-                        <ListItemText
-                        primary={"#" + order.id + " | " + "KD"} 
-                        secondary={order.name}></ListItemText>
+                        <ListItemText primary={"#" + order.id }></ListItemText>
+                        <ListItemText primary={"3.4" + "KD"}></ListItemText>
+                        <ListItemText secondary={order.name}></ListItemText>
                     </div>
                 </ListItem>
 
