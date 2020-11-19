@@ -25,6 +25,7 @@ class Orders extends React.Component {
       newOrder: {
         name: "",
         email: "",
+        orderStatus: ""
       }
     };
     // this.createNewOrder = this.createNewOrder.bind(this)

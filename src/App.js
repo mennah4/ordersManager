@@ -50,6 +50,17 @@ class App extends React.Component{
       this.setState({ selectedOrder: this.state.orders[newOrderIndex], selectedOrderIndex: newOrderIndex });//now the currently selected order is the latest created order 
   }
 
+  updateOrderStatus = (id, orderObj) => {
+      Firebase
+        .firestore()
+        .collection('orders')
+        .doc(id)
+        .update({
+          orderStatus: orderObj.orderStatus,
+          timestamp: Firebase.firestore.FieldValue.serverTimestamp()
+        });
+    }
+
   render(){
     const {selectedOrder, selectedOrderIndex, orders} = this.state;
     return(
@@ -61,7 +72,8 @@ class App extends React.Component{
         {this.state.selectedOrder? 
         <SelectedOrder 
         selectedOrderIndex = {selectedOrderIndex}
-        selectedOrder = {selectedOrder}/> : null}
+        selectedOrder = {selectedOrder}
+        updateOrderStatus={this.updateOrderStatus}/> : null}
         
       </div>
     )
