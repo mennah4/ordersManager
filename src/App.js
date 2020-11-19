@@ -1,6 +1,5 @@
 import React from 'react';
 import Firebase from "../src/components/firebase/Firebase"
-import CreateOrder from "../src/components/form/createOrder"
 import Orders from "../src/components/orders/orders"
 import SelectedOrder from "../src/components/selectedOrder/SelectedOrder"
 
